@@ -1,0 +1,538 @@
+@import "vars"
+@import "fonts"
+
+*
+  box-sizing: border-box
+
+  &::before, &::after
+    box-sizing: border-box
+
+\:root
+
+picture
+  display: flex
+  align-items: center
+  justify-content: center
+
+ul[class], ol[class]
+  padding: 0
+
+body, h1, h2, h3, h4, h5, h6, p, li, figure, figcaption, blockquote, dl, dd
+  margin: 0
+
+h1, h2, h3, h4, h5, h6
+  font-size: inherit
+  font-weight: inherit
+
+html
+  line-height: normal
+  text-rendering: optimizeSpeed
+  font-style: normal
+  &.lock
+    & body
+      overflow: hidden
+
+body
+  font-family: "Raleway", sans-serif
+  font-optical-sizing: auto
+  font-weight: 400
+  font-style: normal
+  // scroll-behavior: smooth
+  font-size: 24px
+  line-height: 28px
+  min-height: 100vh
+  color: var(--text-color-primary)
+  transition: all .2s
+  &.hide-transition
+    & *
+      transition: none!important
+
+ul[class], ol[class]
+  list-style: none
+
+ul, ol
+  list-style: none
+  margin: 0
+  padding: 0
+
+a
+  text-decoration: none
+
+img
+  max-width: 100%
+  display: block
+
+article > * + *
+  margin-top: 1em
+
+input, button, textarea, select
+  font: inherit
+
+.custom-scrollbar
+  @include scrollbar-styling
+
+#main
+  // display: flex
+  // flex-direction: column-reverse
+  // max-height: 100vh
+  // overflow: auto
+  // .main-wrapper
+  //   display: flex
+  //   flex-direction: column
+
+.section-fullscreen
+  min-height: calc(var(--vh, 1vh) * 100)
+  position: relative
+  display: flex
+  align-items: center
+  .section-bg
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    z-index: -1
+    img, video, picture
+      display: block
+      width: 100%
+      height: 100%
+      object-fit: cover
+      object-position: center center
+
+.container
+  padding: 0 162px
+  width: 100%
+  max-width: 100%
+
+.title-block
+  h1
+    font-family: 'Rokkitt', sans-serif
+    font-size: 48px
+    font-weight: 700
+    line-height: 48px
+    letter-spacing: 0.04em
+    color: #E1FAFF
+    margin-bottom: 16px
+
+  .subtitle
+    letter-spacing: 0.04em
+    text-align: left
+    color: #4BA5C3
+
+.navigation
+  position: fixed
+  top: 50%
+  right: 35px
+  transform: translateY(-50%)
+  z-index: 2
+  ul
+    display: flex
+    flex-direction: column
+    & .nav-elem
+      display: block
+      width: 16px
+      height: 16px
+      background: none
+      outline: none
+      border: none
+      cursor: pointer
+      padding: 8px
+      box-sizing: content-box
+      transition: all .3s
+      @include bg-center
+        background-size: 16px 16px
+      &.icon-lang
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='14' height='22' viewBox='0 0 14 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 0.5C6.45632 1.05527 6.125 1.78212 6.125 2.5799C6.15722 4.33161 6.39594 6.07975 6.41667 7.83093C6.45983 9.46299 5.9159 10.9959 5.25456 12.4912C5.03419 12.9044 4.79581 13.3089 4.55729 13.7137L3.85547 13.5865C3.22397 13.4729 2.8132 12.9202 2.93945 12.3517C3.04993 11.8543 3.53628 11.5089 4.07878 11.5066L4.33398 11.5313L3.76432 7.24839C3.57813 5.34121 2.48507 3.66831 0.875 2.5799C0.598316 2.39286 0.305156 2.22186 0 2.07121V17.2828H3.90104C4.19273 18.7081 5.06418 19.9499 6.28906 20.8026C6.58042 20.9834 6.82447 21.2218 7 21.5C7.17553 21.2218 7.41958 20.9834 7.71094 20.8026C8.93582 19.9499 9.80727 18.7081 10.099 17.2828H14V2.07121C13.6948 2.22186 13.4017 2.39286 13.125 2.5799C11.5149 3.66831 10.4219 5.34121 10.2357 7.24839L9.66602 11.5313L9.92122 11.5066C10.4637 11.5089 10.9501 11.8543 11.0605 12.3517C11.1868 12.9202 10.776 13.4729 10.1445 13.5865L9.44271 13.7137C9.20419 13.3089 8.96581 12.9044 8.74544 12.4912C8.0841 10.9959 7.54017 9.46299 7.58333 7.83093C7.60406 6.07975 7.84278 4.33161 7.875 2.5799C7.875 1.78212 7.54368 1.05527 7 0.5ZM1.16667 4.26187C1.92166 5.05949 2.42835 6.05344 2.57943 7.14583L3.04883 10.678C2.45112 10.9458 1.998 11.4372 1.82747 12.0317H1.16667V4.26187ZM12.8333 4.26187V12.0317H12.1725C12.002 11.4372 11.5489 10.9458 10.9512 10.678L11.4206 7.14583C11.5717 6.05344 12.0783 5.05949 12.8333 4.26187ZM7 11.3631C7.31339 12.2858 7.74455 13.1619 8.2806 13.9763C7.77074 14.1157 7.32699 14.3869 7 14.7516C6.67301 14.3869 6.22926 14.1157 5.7194 13.9763C6.25544 13.1619 6.68661 12.2858 7 11.3631ZM1.16667 13.082H1.82747C2.03582 13.8067 2.66441 14.3794 3.46354 14.5793L4.02409 14.6942C3.87399 15.184 3.79167 15.7 3.79167 16.2326H1.16667V13.082ZM12.1725 13.082H12.8333V16.2326H10.2083C10.2083 15.7 10.126 15.184 9.97591 14.6942L10.5365 14.5793C11.3356 14.3794 11.9642 13.8067 12.1725 13.082ZM5.16341 14.9362C5.87114 15.0263 6.41667 15.5708 6.41667 16.2326H4.95833C4.95833 15.7824 5.03242 15.3485 5.16341 14.9362ZM8.83659 14.9362C8.96758 15.3485 9.04167 15.7824 9.04167 16.2326H7.58333C7.58333 15.5708 8.12886 15.0263 8.83659 14.9362ZM5.09049 17.2828H6.41667V19.4939C5.77306 18.8883 5.30553 18.1278 5.09049 17.2828ZM7.58333 17.2828H8.9095C8.69447 18.1278 8.22693 18.8883 7.58333 19.4939V17.2828Z' fill='%23E1FAFF'/%3E%3C/svg%3E")
+
+      &.icon-scroll-top, &.icon-scroll-bottom
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='18' height='19' viewBox='0 0 18 19' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 1.5C4.58172 1.5 1 5.08172 1 9.5C1 13.9183 4.58172 17.5 9 17.5C13.4183 17.5 17 13.9183 17 9.5C17 5.08172 13.4183 1.5 9 1.5Z' stroke='%23E1FAFF' stroke-width='1.5'/%3E%3Cpath d='M11 8.29995C10.6068 7.89539 9.56016 6.29995 9 6.29995M9 6.29995C8.43984 6.29995 7.3932 7.89539 7 8.29995M9 6.29995L9 12.7' stroke='%23E1FAFF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+
+      &.icon-chat
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='18' height='19' viewBox='0 0 18 19' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.27905 15.3947C3.23896 15.287 2.4598 14.9582 1.93726 14.4081C1 13.4216 1 11.8336 1 8.65789V8.23684C1 5.06106 1 3.47318 1.93726 2.48659C2.87452 1.5 4.38301 1.5 7.4 1.5H10.6C13.617 1.5 15.1255 1.5 16.0627 2.48659C17 3.47318 17 5.06106 17 8.23684V8.65789C17 11.8336 17 13.4216 16.0627 14.4081C15.1255 15.3947 13.617 15.3947 10.6 15.3947C10.1516 15.4053 9.79448 15.4411 9.44368 15.5253C8.48496 15.7576 7.5972 16.274 6.7199 16.7243C5.46983 17.3659 4.8448 17.6868 4.45255 17.3864C3.70215 16.7981 4.43563 14.9753 4.6 14.1316' stroke='%23E1FAFF' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E")
+
+      &.icon-scroll-bottom
+        transform: rotate(180deg)
+
+  &.first-section
+    & button
+      &.icon-scroll-bottom
+        opacity: 0
+
+  &.last-section
+    & button
+      &.icon-scroll-top
+        display: none
+
+#production
+  position: relative
+  z-index: 3
+
+.has-paralax-images
+  position: relative
+  .parallax-image
+    position: absolute
+    left: 50%
+    transform: translate(-50%, 0%)
+    width: 360px
+    height: 360px
+    z-index: 1
+    &.small
+      top: -160px
+      z-index: 3
+    &.big
+      width: 720px
+      height: 720px
+      top: -520px
+
+.line-1, .line-2
+  stroke-dasharray: 300
+  stroke-dashoffset: 300
+
+.line-1
+  animation: draw-line-1 3s ease-in infinite forwards
+.line-2
+  animation: draw-line-2 3s linear infinite forwards
+
+
+
+@keyframes draw-line-1
+  0%
+    stroke-dashoffset: 300
+  30%, 70%
+    stroke-dashoffset: 0
+  100%
+    stroke-dashoffset: -300
+
+@keyframes draw-line-2
+  0%, 30%
+    stroke-dashoffset: 300
+  60%
+    stroke-dashoffset: 0
+  100%
+    stroke-dashoffset: -300
+
+
+@keyframes logo-rotate
+  0%
+    transform: rotate(0deg)
+  
+  5%, 25%
+    transform: rotate(90deg)
+  
+  30%, 50%
+    transform: rotate(180deg)
+  
+  55%, 75%
+    transform: rotate(270deg)
+  
+  80%, 100%
+    transform: rotate(360deg)
+  
+    
+    
+
+
+#welcome
+  background-color: #152935
+  .section-bg
+    z-index: 0
+    opacity: 0.2
+  .content
+    background-image: url("../img/bg-lines-welcome.svg")
+    background-position: left bottom
+    background-size: cover
+    background-repeat: no-repeat
+    min-height: calc(var(--vh, 1vh) * 100)
+    position: relative
+    z-index: 2
+
+  .logo
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%,-50%)
+    display: flex
+    align-items: center
+    gap: 17px
+    & svg
+      // animation: logo-rotate 12s linear infinite forwards
+      // animation-delay: 3s
+
+  .welcome-title
+    font-size: 24px
+    font-weight: 400
+    line-height: 28.8px
+    letter-spacing: 0.04em
+    color: #4BA5C3
+    position: absolute
+    top: 50%
+    left: 0
+    transform: translateY(-50%)
+
+  .welcome-blockquote
+    font-family: 'Lato', sans-serif
+    font-size: 12px
+    font-weight: 400
+    line-height: 18px
+    letter-spacing: 0.04em
+    color: #E1FAFF
+    position: absolute
+    left: 0
+    bottom: 28%
+    span
+      font-style: italic
+    p
+      margin: 18px 0
+      &:first-child
+        margin-top: 0
+      &:last-child
+        margin-bottom: 0
+
+#mission
+  z-index: 3
+  background-color: white
+  .content
+    background-image: url("../img/bg-circle-mission-2.svg"), url("../img/bg-circle-mission.svg")
+    background-position: center bottom, center bottom
+    background-repeat: no-repeat, no-repeat
+    background-size: 100% 90%, cover
+  ul
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    min-height: calc(var(--vh, 1vh) * 100)
+    padding: 100px 0
+    gap: 24px
+    max-width: 1090px
+    margin: 0 auto
+    li
+      position: relative
+      background-color: #EBFAFF
+      padding: 24px
+      border-radius: 16px
+      width: 100%
+      max-width: 432px
+      &:nth-child(even)
+        margin: 0 0 0 auto
+      &:nth-child(odd)
+        margin: 0 auto 0 0
+
+      .list-title
+        font-size: 18px
+        font-weight: 900
+        line-height: 27px
+        letter-spacing: 0.04em
+        color: #4BA5C3
+        margin-bottom: 16px
+      .list-text
+        font-size: 16px
+        font-weight: 400
+        letter-spacing: 0.04em
+
+      &::after
+        content: ''
+        position: absolute
+        display: block
+        width: 64px
+        height: 64px
+        top: 50%
+        right: -32px
+        transform: translateY(-50%)
+        @include bg-center
+          background-size: contain
+
+      &:nth-child(4n+1)
+        &::after
+          background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='64' height='65' viewBox='0 0 64 65' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg filter='url(%23filter0_d_201_877)'%3E%3Crect width='64' height='64' rx='16' fill='white'/%3E%3Crect x='0.5' y='0.5' width='63' height='63' rx='15.5' stroke='url(%23paint0_linear_201_877)'/%3E%3C/g%3E%3Cpath d='M40 47L24 32L40 17' stroke='%234BA5C3' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M28.3867 28.2472C29.9119 28.8113 30.9991 30.2787 30.9991 32C30.9991 33.7213 29.9119 35.1886 28.3867 35.7527' stroke='%234BA5C3' stroke-width='2'/%3E%3Cdefs%3E%3Cfilter id='filter0_d_201_877' x='0' y='0' width='64' height='65' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'/%3E%3CfeOffset dy='1'/%3E%3CfeComposite in2='hardAlpha' operator='out'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.840072 0 0 0 0 0.960018 0 0 0 0 1 0 0 0 1 0'/%3E%3CfeBlend mode='normal' in2='BackgroundImageFix' result='effect1_dropShadow_201_877'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='effect1_dropShadow_201_877' result='shape'/%3E%3C/filter%3E%3ClinearGradient id='paint0_linear_201_877' x1='32' y1='-4.68114' x2='32' y2='30.5778' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23D6F5FF'/%3E%3Cstop offset='1' stop-color='%23D6F5FF' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E")
+
+      &:nth-child(4n+2)
+        &::after
+          background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='64' height='65' viewBox='0 0 64 65' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg filter='url(%23filter0_d_201_869)'%3E%3Crect width='64' height='64' rx='16' fill='white'/%3E%3Crect x='0.5' y='0.5' width='63' height='63' rx='15.5' stroke='url(%23paint0_linear_201_869)'/%3E%3C/g%3E%3Cpath d='M24 17L40 32L24 47' stroke='%234BA5C3' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M35.6133 35.5055C34.0881 34.9414 33.0009 33.474 33.0009 31.7527C33.0009 30.0314 34.0881 28.5641 35.6133 27.9999' stroke='%234BA5C3' stroke-width='2'/%3E%3Cdefs%3E%3Cfilter id='filter0_d_201_869' x='0' y='0' width='64' height='65' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'/%3E%3CfeOffset dy='1'/%3E%3CfeComposite in2='hardAlpha' operator='out'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.840072 0 0 0 0 0.960018 0 0 0 0 1 0 0 0 1 0'/%3E%3CfeBlend mode='normal' in2='BackgroundImageFix' result='effect1_dropShadow_201_869'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='effect1_dropShadow_201_869' result='shape'/%3E%3C/filter%3E%3ClinearGradient id='paint0_linear_201_869' x1='32' y1='-4.68114' x2='32' y2='30.5778' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23D6F5FF'/%3E%3Cstop offset='1' stop-color='%23D6F5FF' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E")
+
+      &:nth-child(4n+3)
+        &::after
+          background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='64' height='65' viewBox='0 0 64 65' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg filter='url(%23filter0_d_201_861)'%3E%3Crect width='64' height='64' rx='16' fill='white'/%3E%3Crect x='0.5' y='0.5' width='63' height='63' rx='15.5' stroke='url(%23paint0_linear_201_861)'/%3E%3C/g%3E%3Cpath d='M17 40L32 24L47 40' stroke='%234BA5C3' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M26.877 28.5C28.0666 30.0218 29.9195 31 32.0008 31C34.0821 31 35.935 30.0218 37.1246 28.5' stroke='%234BA5C3' stroke-width='2'/%3E%3Cdefs%3E%3Cfilter id='filter0_d_201_861' x='0' y='0' width='64' height='65' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'/%3E%3CfeOffset dy='1'/%3E%3CfeComposite in2='hardAlpha' operator='out'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.840072 0 0 0 0 0.960018 0 0 0 0 1 0 0 0 1 0'/%3E%3CfeBlend mode='normal' in2='BackgroundImageFix' result='effect1_dropShadow_201_861'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='effect1_dropShadow_201_861' result='shape'/%3E%3C/filter%3E%3ClinearGradient id='paint0_linear_201_861' x1='32' y1='-4.68114' x2='32' y2='30.5778' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23D6F5FF'/%3E%3Cstop offset='1' stop-color='%23D6F5FF' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E")
+
+      &:nth-child(4n+4)
+        &::after
+          background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='64' height='65' viewBox='0 0 64 65' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg filter='url(%23filter0_d_201_853)'%3E%3Crect width='64' height='64' rx='16' fill='white'/%3E%3Crect x='0.5' y='0.5' width='63' height='63' rx='15.5' stroke='url(%23paint0_linear_201_853)'/%3E%3C/g%3E%3Cpath d='M47 26L32 42L17 26' stroke='%234BA5C3' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M37.123 37.5C35.9334 35.9782 34.0805 35 31.9992 35C29.9179 35 28.065 35.9782 26.8754 37.5' stroke='%234BA5C3' stroke-width='2'/%3E%3Cdefs%3E%3Cfilter id='filter0_d_201_853' x='0' y='0' width='64' height='65' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'/%3E%3CfeOffset dy='1'/%3E%3CfeComposite in2='hardAlpha' operator='out'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.840072 0 0 0 0 0.960018 0 0 0 0 1 0 0 0 1 0'/%3E%3CfeBlend mode='normal' in2='BackgroundImageFix' result='effect1_dropShadow_201_853'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='effect1_dropShadow_201_853' result='shape'/%3E%3C/filter%3E%3ClinearGradient id='paint0_linear_201_853' x1='32' y1='-4.68114' x2='32' y2='30.5778' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23D6F5FF'/%3E%3Cstop offset='1' stop-color='%23D6F5FF' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E")
+
+@keyframes vl-values
+  0%
+    transform: translateX(100%)
+  90%
+    transform: translateX(-100vw)
+  100%
+    opacity: 0
+
+#values
+  background-color: #152935
+  background-image: url("../img/values-bg.svg")
+  background-position: center right
+  background-repeat: no-repeat
+  overflow: hidden
+  .vl
+    position: absolute
+    right: 0
+    transform: translateX(100%)
+    animation: vl-values 15s ease-in infinite
+  .vl-1
+    top: 60px
+    animation-delay: 5s
+  .vl-2
+    top: 130px
+    animation-duration: 20s
+  .vl-3
+    top: 200px
+    animation-delay: 4s
+  .vl-4
+    top: 270px
+    animation-delay: 2s
+  .vl-5
+    top: auto
+    bottom: 130px
+    animation-delay: 6s
+  .vl-6
+    top: auto
+    bottom: 60px
+
+  .title-block
+    margin-bottom: 64px
+  ul
+    display: flex
+    align-items: center
+    justify-content: space-between
+    align-items: flex-start
+    gap: 80px
+    .list-title
+      font-size: 18px
+      font-weight: 900
+      line-height: 27px
+      letter-spacing: 0.04em
+      margin-bottom: 8px
+      color: #E1FAFF
+    .list-desc
+      color: #82AAC8
+      font-size: 16px
+      line-height: 24px
+      letter-spacing: 0.04em
+      p
+        margin: 24px 0
+        &:first-child
+          margin-top: 0
+        &:last-child
+          margin-bottom: 0
+
+#services
+  .title-block
+    margin-bottom: 64px
+    h1
+      color: #4BA5C3
+  .container
+    z-index: 3
+  ul
+    display: flex
+    align-items: center
+    justify-content: space-between
+    align-items: flex-start
+    gap: 80px
+    .list-title
+      font-size: 18px
+      font-weight: 900
+      line-height: 27px
+      letter-spacing: 0.04em
+      margin-bottom: 8px
+      color: #4BA5C3
+    .list-desc
+      color: #0F4655
+      font-size: 16px
+      line-height: 24px
+      letter-spacing: 0.04em
+      p
+        margin: 24px 0
+        &:first-child
+          margin-top: 0
+        &:last-child
+          margin-bottom: 0
+
+#team
+  background-color: #152935
+  z-index: 3
+  .content
+    background-image: url("../img/bg-team.svg")
+    background-position: top center
+    background-repeat: no-repeat
+    min-height: calc(var(--vh, 1vh) * 100)
+    display: flex
+    flex-direction: column
+    justify-content: center
+  .title-block
+    margin-bottom: 84px
+  .about
+    display: flex
+    justify-content: space-between
+    .left, .right
+      max-width: 22.2vw
+    .center
+      width: 100%
+      max-width: 14.1vw
+      // aspect-ratio: 1/1
+      position: relative
+      &::before
+        content: ''
+        position: absolute
+        display: block
+        top: 50%
+        left: 50%
+        width: 100%
+        height: 100%
+        background-image: url("../img/team-photo-lines.svg")
+        background-position: center center
+        background-repeat: no-repeat
+        background-size: contain
+        transform: translate(-50%,-50%) scale(1.8814)
+        transform-origin: center center
+    .name
+      font-size: 18px
+      font-weight: 900
+      line-height: 27px
+      letter-spacing: 0.04em
+      margin-bottom: 16px
+      color: #E1FAFF
+    .desc
+      font-size: 16px
+      font-weight: 400
+      line-height: 24px
+      letter-spacing: 0.04em
+      color: #82AAC8
+      a
+        color: #E1FAFF
+        text-decoration: underline
+        text-underline-offset: 2px
+
+      p
+        margin: 24px 0
+        &:first-child
+          margin-top: 0
+        &:last-child
+          margin-bottom: 0
+
+    .btn
+      border-radius: 16px
+      padding: 12px 43px
+      display: inline-block
+      background-color: #FFFFFF
+      cursor: pointer
+      color: #4BA5C3
+      font-size: 18px
+      font-weight: 900
+      line-height: 27px
+      letter-spacing: 0.04em
+      margin-top: 24px
+      transition: all .3s
+      &:active
+        background: linear-gradient(357.89deg, #DEF3FF 1.4%, #8EBCD6 97.85%)
+      @media (hover: hover)
+        &:hover
+          background-color: #DEF3FF
