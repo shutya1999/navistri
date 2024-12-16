@@ -124,7 +124,19 @@ input, button, textarea, select
   top: 50%
   right: 35px
   transform: translateY(-50%)
-  z-index: 2
+  z-index: 10
+  &.light
+    & ul
+      & .nav-elem
+        &.icon-lang
+          background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='14' height='22' viewBox='0 0 14 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 0.5C6.45632 1.05527 6.125 1.78212 6.125 2.5799C6.15722 4.33161 6.39594 6.07975 6.41667 7.83093C6.45983 9.46299 5.9159 10.9959 5.25456 12.4912C5.03419 12.9044 4.79581 13.3089 4.55729 13.7137L3.85547 13.5865C3.22397 13.4729 2.8132 12.9202 2.93945 12.3517C3.04993 11.8543 3.53628 11.5089 4.07878 11.5066L4.33398 11.5313L3.76432 7.24839C3.57813 5.34121 2.48507 3.66831 0.875 2.5799C0.598316 2.39286 0.305156 2.22186 0 2.07121V17.2828H3.90104C4.19273 18.7081 5.06418 19.9499 6.28906 20.8026C6.58042 20.9834 6.82447 21.2218 7 21.5C7.17553 21.2218 7.41958 20.9834 7.71094 20.8026C8.93582 19.9499 9.80727 18.7081 10.099 17.2828H14V2.07121C13.6948 2.22186 13.4017 2.39286 13.125 2.5799C11.5149 3.66831 10.4219 5.34121 10.2357 7.24839L9.66602 11.5313L9.92122 11.5066C10.4637 11.5089 10.9501 11.8543 11.0605 12.3517C11.1868 12.9202 10.776 13.4729 10.1445 13.5865L9.44271 13.7137C9.20419 13.3089 8.96581 12.9044 8.74544 12.4912C8.0841 10.9959 7.54017 9.46299 7.58333 7.83093C7.60406 6.07975 7.84278 4.33161 7.875 2.5799C7.875 1.78212 7.54368 1.05527 7 0.5ZM1.16667 4.26187C1.92166 5.05949 2.42835 6.05344 2.57943 7.14583L3.04883 10.678C2.45112 10.9458 1.998 11.4372 1.82747 12.0317H1.16667V4.26187ZM12.8333 4.26187V12.0317H12.1725C12.002 11.4372 11.5489 10.9458 10.9512 10.678L11.4206 7.14583C11.5717 6.05344 12.0783 5.05949 12.8333 4.26187ZM7 11.3631C7.31339 12.2858 7.74455 13.1619 8.2806 13.9763C7.77074 14.1157 7.32699 14.3869 7 14.7516C6.67301 14.3869 6.22926 14.1157 5.7194 13.9763C6.25544 13.1619 6.68661 12.2858 7 11.3631ZM1.16667 13.082H1.82747C2.03582 13.8067 2.66441 14.3794 3.46354 14.5793L4.02409 14.6942C3.87399 15.184 3.79167 15.7 3.79167 16.2326H1.16667V13.082ZM12.1725 13.082H12.8333V16.2326H10.2083C10.2083 15.7 10.126 15.184 9.97591 14.6942L10.5365 14.5793C11.3356 14.3794 11.9642 13.8067 12.1725 13.082ZM5.16341 14.9362C5.87114 15.0263 6.41667 15.5708 6.41667 16.2326H4.95833C4.95833 15.7824 5.03242 15.3485 5.16341 14.9362ZM8.83659 14.9362C8.96758 15.3485 9.04167 15.7824 9.04167 16.2326H7.58333C7.58333 15.5708 8.12886 15.0263 8.83659 14.9362ZM5.09049 17.2828H6.41667V19.4939C5.77306 18.8883 5.30553 18.1278 5.09049 17.2828ZM7.58333 17.2828H8.9095C8.69447 18.1278 8.22693 18.8883 7.58333 19.4939V17.2828Z' fill='%234BA5C3'/%3E%3C/svg%3E")
+
+        &.icon-scroll-top, &.icon-scroll-bottom
+          background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='18' height='19' viewBox='0 0 18 19' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 1.5C4.58172 1.5 1 5.08172 1 9.5C1 13.9183 4.58172 17.5 9 17.5C13.4183 17.5 17 13.9183 17 9.5C17 5.08172 13.4183 1.5 9 1.5Z' stroke='%234BA5C3' stroke-width='1.5'/%3E%3Cpath d='M11 8.29995C10.6068 7.89539 9.56016 6.29995 9 6.29995M9 6.29995C8.43984 6.29995 7.3932 7.89539 7 8.29995M9 6.29995L9 12.7' stroke='%234BA5C3' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+  
+        &.icon-chat
+          background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='18' height='19' viewBox='0 0 18 19' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.27905 15.3947C3.23896 15.287 2.4598 14.9582 1.93726 14.4081C1 13.4216 1 11.8336 1 8.65789V8.23684C1 5.06106 1 3.47318 1.93726 2.48659C2.87452 1.5 4.38301 1.5 7.4 1.5H10.6C13.617 1.5 15.1255 1.5 16.0627 2.48659C17 3.47318 17 5.06106 17 8.23684V8.65789C17 11.8336 17 13.4216 16.0627 14.4081C15.1255 15.3947 13.617 15.3947 10.6 15.3947C10.1516 15.4053 9.79448 15.4411 9.44368 15.5253C8.48496 15.7576 7.5972 16.274 6.7199 16.7243C5.46983 17.3659 4.8448 17.6868 4.45255 17.3864C3.70215 16.7981 4.43563 14.9753 4.6 14.1316' stroke='%234BA5C3' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E")
+
   ul
     display: flex
     flex-direction: column
@@ -177,60 +189,59 @@ input, button, textarea, select
     height: 360px
     z-index: 1
     &.small
-      top: -160px
+      top: 10%
       z-index: 3
     &.big
       width: 720px
       height: 720px
-      top: -520px
-
-.line-1, .line-2
-  stroke-dasharray: 300
-  stroke-dashoffset: 300
+      top: -720px
 
 .line-1
-  animation: draw-line-1 3s ease-in infinite forwards
+  stroke-dasharray: 168
+  stroke-dashoffset: 168
+  animation: draw-line-1 4s ease-in infinite forwards
 .line-2
-  animation: draw-line-2 3s linear infinite forwards
-
-
+  stroke-dasharray: 42
+  stroke-dashoffset: 42
+  animation: draw-line-2 4s ease-in infinite forwards
 
 @keyframes draw-line-1
-  0%
-    stroke-dashoffset: 300
+  0%, 20%
+    stroke-dashoffset: 168
   30%, 70%
-    stroke-dashoffset: 0
-  100%
-    stroke-dashoffset: -300
+    stroke-dashoffset: 336
+  80%, 100%
+    stroke-dashoffset: 504
 
 @keyframes draw-line-2
   0%, 30%
-    stroke-dashoffset: 300
-  60%
-    stroke-dashoffset: 0
-  100%
-    stroke-dashoffset: -300
-
+    stroke-dashoffset: 42
+  40%, 60%
+    stroke-dashoffset: 84
+  70%, 100%
+    stroke-dashoffset: 126
 
 @keyframes logo-rotate
-  0%
+  // 0%
+  //   transform: rotate(0deg)
+  // 5%, 25%
+  //   transform: rotate(-90deg)
+  // 30%, 50%
+  //   transform: rotate(-180deg)
+  // 55%, 75%
+  //   transform: rotate(-270deg)
+  // 80%, 100%
+  //   transform: rotate(-360deg)
+  0%, 24%
     transform: rotate(0deg)
-  
-  5%, 25%
-    transform: rotate(90deg)
-  
-  30%, 50%
-    transform: rotate(180deg)
-  
-  55%, 75%
-    transform: rotate(270deg)
-  
-  80%, 100%
-    transform: rotate(360deg)
-  
-    
-    
-
+  25%, 49%
+    transform: rotate(-90deg)
+  50%, 74%
+    transform: rotate(-180deg)
+  75%, 99%
+    transform: rotate(-270deg)
+  100%
+    transform: rotate(-360deg)
 
 #welcome
   background-color: #152935
@@ -255,8 +266,10 @@ input, button, textarea, select
     align-items: center
     gap: 17px
     & svg
-      // animation: logo-rotate 12s linear infinite forwards
-      // animation-delay: 3s
+      &:first-child
+        transform: rotate3d(0, 180, 0, 180deg)
+        // animation: logo-rotate 17.5s linear infinite forwards
+        // animation-delay: 4s
 
   .welcome-title
     font-size: 24px
@@ -362,9 +375,12 @@ input, button, textarea, select
   0%
     transform: translateX(100%)
   90%
-    transform: translateX(-100vw)
-  100%
+    transform: translateX(-100%)
+  99%
+    transform: translateX(100%)
     opacity: 0
+  100%
+    opacity: 1
 
 #values
   background-color: #152935
@@ -373,10 +389,15 @@ input, button, textarea, select
   background-repeat: no-repeat
   overflow: hidden
   .vl
+    width: 100%
+    height: 2px
+    object-fit: contain
+    // opacity: 0
     position: absolute
-    right: 0
+    left: 0
     transform: translateX(100%)
     animation: vl-values 15s ease-in infinite
+    object-position: center left
   .vl-1
     top: 60px
     animation-delay: 5s

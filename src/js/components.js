@@ -47,7 +47,7 @@ window.addEventListener('load', () => {
         top: 9999,
         behavior: 'smooth'
     })
-    
+
     if (parallaxImagesSmall.length > 0) {
         parallaxImagesSmall.forEach(parallaxImageSmall => {
             gsap.to(parallaxImageSmall, {
@@ -72,7 +72,7 @@ window.addEventListener('load', () => {
                 ease: "none",
                 scrollTrigger: {
                     trigger: parallaxImageBig.closest('section'),
-                    start: "top center",
+                    start: "-=40% center",
                     end: () => `+=${window.innerHeight}`,
                     // scrub: true,
                     scrub: 2,
@@ -81,14 +81,67 @@ window.addEventListener('load', () => {
             })
         })
     }
+});
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    const header = document.querySelector('.navigation');
+    const blocks = document.querySelectorAll('.js-section');
+    let currentBlockIndex = 0; // Індекс блоку, який зараз на екрані
 
+
+    const observerOptions = {
+        root: null, // Вікно браузера
+        rootMargin: '0px',
+        threshold: 0.5, // 50% блоку має бути видно
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                currentBlockIndex = Array.from(blocks).indexOf(entry.target);
+
+                header.classList.remove('dark', 'light', 'first-section', 'last-section');
+                header.classList.add(entry.target.dataset.theme);
+
+                if (entry.target.dataset.first === '') {
+                    header.classList.add('first-section');
+                }
+
+                if (entry.target.dataset.last === '') {
+                    header.classList.add('last-section');
+                }
+            }
+        });
+    }, observerOptions);
+
+    // Спостереження за кожним блоком
+    blocks.forEach((block) => observer.observe(block));
+
+
+    // Функція прокрутки до блоку
+    const scrollToBlock = (index) => {
+        if (index >= 0 && index < blocks.length) {
+            blocks[index].scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+            });
+        }
+    };
 
     
+    if (document.querySelector('.js-scroll-top')) {
+        document.querySelector('.js-scroll-top').addEventListener('click', () => {
+            scrollToBlock(currentBlockIndex - 1);
+        })
+    }
 
-
-
-
+    if (document.querySelector('.js-scroll-bottom')) {
+        document.querySelector('.js-scroll-bottom').addEventListener('click', () => {
+            scrollToBlock(currentBlockIndex + 1);
+        })
+    }
 });
+
+
 
