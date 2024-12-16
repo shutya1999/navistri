@@ -89,7 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const blocks = document.querySelectorAll('.js-section');
     let currentBlockIndex = 0; // Індекс блоку, який зараз на екрані
 
-
     const observerOptions = {
         root: null, // Вікно браузера
         rootMargin: '0px',
@@ -129,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    
+
     if (document.querySelector('.js-scroll-top')) {
         document.querySelector('.js-scroll-top').addEventListener('click', () => {
             scrollToBlock(currentBlockIndex - 1);
@@ -143,5 +142,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+const logoSvg = document.querySelector('.logo-svg');
+if (logoSvg) {
+    let curRotate = 0;
+    
+    setInterval(() => {
+        curRotate += 90;
+        logoSvg.style.transform = `rotate(-${curRotate}deg)`
+    }, 4000)
+}
 
 
