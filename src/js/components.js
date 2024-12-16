@@ -149,7 +149,7 @@ if (logoSvg) {
     setInterval(() => {
         curRotate += 90;
         logoSvg.style.transform = `rotate(-${curRotate}deg)`
-    }, 4000)
+    }, 3000)
 }
 
 
