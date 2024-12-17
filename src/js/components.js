@@ -20,6 +20,14 @@ window.addEventListener('load', () => {
         document.documentElement.style.setProperty('--header-height', `${header.clientHeight}px`);
     }
 
+    setTimeout(() => {
+        document.querySelector('.preloader').classList.add('hide')
+    }, 3000)
+
+    setTimeout(() => {
+        window.scrollTo(0, 9999999);
+    }, 500)
+
 
 })
 
@@ -43,20 +51,34 @@ window.addEventListener('load', () => {
     const parallaxImagesBig = document.querySelectorAll('.parallax-image.big');
 
 
-    window.scrollTo({
-        top: 9999,
-        behavior: 'smooth'
-    })
+    // window.scrollTo({
+    //     top: 9999,
+    //     behavior: 'smooth'
+    // })
+    // document.querySelector('#production').scrollIntoView({
+    //     behavior: 'smooth',
+    //     block: 'start',
+    // });
 
     if (parallaxImagesSmall.length > 0) {
         parallaxImagesSmall.forEach(parallaxImageSmall => {
             gsap.to(parallaxImageSmall, {
-                y: "-100%",
+                y: "-50%",
                 ease: "none",
                 scrollTrigger: {
                     trigger: parallaxImageSmall.closest('section'),
-                    start: "top center",
-                    end: () => `+=${window.innerHeight}`,
+                    start: () => {
+                        if (window.matchMedia("(max-width: 768px)").matches) {
+                            return "-=10% center";    
+                        }
+                        return "-=50% center";
+                    },
+                    end: () => {
+                        if (window.matchMedia("(max-width: 768px)").matches) {
+                            return `+=${window.innerHeight + (window.innerHeight / 20)}`;    
+                        }
+                        return `+=${window.innerHeight}`;
+                    },
                     scrub: 2,
                     // markers: true,
                 }
@@ -67,14 +89,14 @@ window.addEventListener('load', () => {
     if (parallaxImagesBig.length > 0) {
         parallaxImagesBig.forEach(parallaxImageBig => {
             gsap.to(parallaxImageBig, {
-                y: "50%",
-                // duration: 5,
+                y: "25%",
                 ease: "none",
                 scrollTrigger: {
                     trigger: parallaxImageBig.closest('section'),
-                    start: "-=40% center",
+                    start: () => {
+                        return "-=50% center";
+                    },
                     end: () => `+=${window.innerHeight}`,
-                    // scrub: true,
                     scrub: 2,
                     // markers: true,
                 }
@@ -142,13 +164,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-const logoSvg = document.querySelector('.logo-svg');
+const logoSvg = document.querySelector('#welcome .logo-svg');
 if (logoSvg) {
     let curRotate = 0;
     
     setInterval(() => {
         curRotate += 90;
         logoSvg.style.transform = `rotate(-${curRotate}deg)`
+
+        if (curRotate === 360) {
+            curRotate = 0;
+        }
     }, 3000)
 }
 
