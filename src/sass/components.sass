@@ -71,10 +71,15 @@ input, button, textarea, select
 .custom-scrollbar
   @include scrollbar-styling
 
-@keyframes fade-in-out
+@keyframes fade-in
   0%
     opacity: 0
-  50%
+  100%
+    opacity: 1
+
+
+@keyframes fade-out
+  0%
     opacity: 1
   100%
     opacity: 0
@@ -108,14 +113,19 @@ input, button, textarea, select
   &.hide
     clip-path: inset(0 0 100% 0)
     pointer-events: none
+  &.dn
+    display: none
+
   .logo-text
     opacity: 0
-    animation: fade-in-out 3s ease-in-out forwards
+    animation: fade-in 2s ease-in-out forwards
 
   .line-1
-    animation: draw-line-1 3s ease-in forwards
+    animation: draw-line-1-mob 1s ease-in forwards
+    animation-delay: 0.5s
   .line-2
-    animation: draw-line-2 3s ease-in forwards
+    animation: draw-line-2-mob 1s ease-in forwards
+    animation-delay: 0.5s
 
 .section-fullscreen
   min-height: calc(var(--vh, 1vh) * 100)
@@ -249,6 +259,18 @@ input, button, textarea, select
   stroke-dasharray: 42
   stroke-dashoffset: 42
   animation: draw-line-2 3s ease-in infinite forwards
+
+@keyframes draw-line-1-mob
+  0%
+    stroke-dashoffset: 168
+  60%, 100%
+    stroke-dashoffset: 336
+
+@keyframes draw-line-2-mob
+  0%, 80%
+    stroke-dashoffset: 42
+  100%
+    stroke-dashoffset: 84
 
 @keyframes draw-line-1
   0%, 10%
@@ -548,6 +570,9 @@ input, button, textarea, select
       max-width: 14.1vw
       // aspect-ratio: 1/1
       position: relative
+      display: flex
+      align-items: center
+      justify-content: center
       &::before
         content: ''
         position: absolute
@@ -612,6 +637,24 @@ input, button, textarea, select
 
   .navigation
     right: 15px
+
+
+@media (max-width: 1024px)
+  .container
+    padding: 0 40px
+  .navigation
+    right: 8px
+  #team 
+    .about 
+      display: grid
+      grid-template-columns: repeat(3, 1fr)
+      justify-content: space-between
+      .center
+        max-width: 100%
+        &::before
+          display: none
+      .right
+        margin: 0 0 0 auto
 
 @media (max-width: 768px)
   .container
@@ -704,7 +747,7 @@ input, button, textarea, select
             display: none
 
   #values, #services
-    padding: 300px 0 130px 0
+    padding: 130px 0
     .container
       display: flex
       flex-direction: column-reverse
@@ -734,10 +777,12 @@ input, button, textarea, select
       gap: 24px
       min-height: auto
     .about
+      display: flex
       flex-direction: column-reverse
       gap: 24px
       .left, .right
         max-width: 320px
+        margin: 0
       .right
         display: flex
         flex-direction: column

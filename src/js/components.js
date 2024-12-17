@@ -22,7 +22,10 @@ window.addEventListener('load', () => {
 
     setTimeout(() => {
         document.querySelector('.preloader').classList.add('hide')
-    }, 3000)
+        setTimeout(() => {
+            document.querySelector('.preloader').classList.add('dn')
+        }, 1500)
+    }, 1450)
 
     setTimeout(() => {
         window.scrollTo(0, 9999999);
@@ -69,13 +72,13 @@ window.addEventListener('load', () => {
                     trigger: parallaxImageSmall.closest('section'),
                     start: () => {
                         if (window.matchMedia("(max-width: 768px)").matches) {
-                            return "-=10% center";    
+                            return "-=10% center";
                         }
                         return "-=50% center";
                     },
                     end: () => {
                         if (window.matchMedia("(max-width: 768px)").matches) {
-                            return `+=${window.innerHeight + (window.innerHeight / 20)}`;    
+                            return `+=${window.innerHeight + (window.innerHeight / 20)}`;
                         }
                         return `+=${window.innerHeight}`;
                     },
@@ -111,15 +114,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const blocks = document.querySelectorAll('.js-section');
     let currentBlockIndex = 0; // Індекс блоку, який зараз на екрані
 
-    const observerOptions = {
-        root: null, // Вікно браузера
+
+
+
+
+
+    let observerOptions = {
+        root: null,
         rootMargin: '0px',
-        threshold: 0.5, // 50% блоку має бути видно
+        threshold: 0.5,
     };
+
+    if (window.matchMedia("(max-width: 768px)").matches) {
+        observerOptions = {
+            root: null,
+            rootMargin: '-10% 0% -90% 0%',
+            threshold: 0,
+        };
+    }
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
+                console.log(entry);
+
                 currentBlockIndex = Array.from(blocks).indexOf(entry.target);
 
                 header.classList.remove('dark', 'light', 'first-section', 'last-section');
@@ -167,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const logoSvg = document.querySelector('#welcome .logo-svg');
 if (logoSvg) {
     let curRotate = 0;
-    
+
     setInterval(() => {
         curRotate += 90;
         logoSvg.style.transform = `rotate(-${curRotate}deg)`
